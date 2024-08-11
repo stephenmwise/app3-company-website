@@ -9,18 +9,28 @@ Our dedicated team of experts is passionate about driving success.
 """
 st.write(subtext)
 st.subheader("Our Team")
-col1,col2,col3 = st.columns(3)
+
+col1, empty_col, col2, empty_col2, col3 = st.columns([1.5, 0.5, 1.5, 0.5, 1.5])
+
+df = pandas.read_csv("data.csv", sep=",")
 
 with col1:
-    st.subheader("col1 text")
-    st.write("Job Title")
-    st.image("images/1.png")
+    for index, row in df[:4].iterrows():
+        st.subheader(row["firstname"].capitalize() + " " + row["lastname"].capitalize())
+        st.write(row["role"])
+        st.image("images/" + row["image"])
+        st.write("")
 with col2:
-    st.subheader("col2 text")
-    st.write("Job Title")
-    st.image("images/2.png")
+    for index, row in df[4:8].iterrows():
+        st.subheader(row["firstname"].capitalize() + " " + row["lastname"].capitalize())
+        st.write(row["role"])
+        st.image("images/" + row["image"])
+        st.write("")
 with col3:
-    st.subheader("col3 text")
-    st.write("Job Title")
-    st.image("images/3.png")
+    for index, row in df[8:].iterrows():
+        st.subheader(row["firstname"].capitalize() + " " + row["lastname"].capitalize())
+        st.write(row["role"])
+        st.image("images/" + row["image"])
+        st.write("")
+
 
