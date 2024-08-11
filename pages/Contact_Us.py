@@ -1,4 +1,6 @@
 import streamlit as st
+import csv
+import pandas
 
 st.set_page_config("The Best Company | Contact Us", layout="wide")
 
@@ -8,7 +10,9 @@ st.write("Have questions or need assistance? We're here to help! Please fill out
 #Form with text and subscribe checkbox
 with st.form("my_form", clear_on_submit=True):
     st.write("Fill out this form with your inquiry to our team.")
-    text_val = st.text_input("Write your message: ")
+    topics = pandas.read_csv("topics.csv")
+    st.selectbox(label="Select Topic", options=topics["topic"])
+    text_val = st.text_area("Write your message: ")
     checkbox_val = st.checkbox("Subscribe to newsletter (Updates, News, and Limited-time Deals)")
     # Submit Button
     submitted = st.form_submit_button("Submit")
